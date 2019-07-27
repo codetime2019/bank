@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="a.c" >
+  	
+<!--   	向日志表中添加一条数据 -->
+  	<insert id="insertLog" parameterType="Journal" >
+  		INSERT INTO journal (accout,accin,dates,amount) VALUES (#{accout},#{accin},#{dates},#{amount})
+  	</insert>
+<!--   	查询全部数据 -->
+	<select id="totalL" resultType="Journal" >
+		SELECT * FROM journal
+	</select>
+<!--   	查询总数 -->
+	<select id="total" resultType="int" >
+		SELECT COUNT(*) FROM journal
+	</select>
+	
+	<select id="getlist" parameterType="map" resultType="Journal" >
+		SELECT * FROM journal LIMIT #{init},#{size}
+	</select>
+  </mapper>

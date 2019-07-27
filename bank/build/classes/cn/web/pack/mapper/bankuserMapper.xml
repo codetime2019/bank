@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="a.b" >
+<!-- 	查询用户总数 -->
+	<select id="total" resultType="int" >
+		SELECT COUNT(*) FROM bank_user
+	</select>
+<!-- 	查询用户明细 -->
+	<select id="all" resultType="BankUser">
+		SELECT * FROM bank_user
+	</select>
+<!-- 	根据给的账户查询账户存在 -->
+	<select id="getAB" parameterType="map" resultType="int" >
+		SELECT COUNT(*) FROM bank_user WHERE account_id=#{account}
+	</select>
+<!-- 	判断用户密码是否输入正确 -->
+	<select id="truthU" parameterType="map" resultType="int" >
+		SELECT COUNT(*) FROM bank_user WHERE account_id=#{account} and account_password=#{password}
+	</select>
+<!-- 	查询账户对象 -->
+	<select id="seUser" parameterType="map" resultType="BankUser" >
+		SELECT * FROM bank_user WHERE account_id=#{id}
+	</select>
+	<update id="updateM" parameterType="map" >
+		UPDATE bank_user SET account_balance=#{amount} WHERE account_id=#{id}
+	</update>
+</mapper>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+  <configuration>
+  	
+  	<typeAliases>
+  		<package name="cn.web.pack.object"/>
+  	</typeAliases>
+  
+  	<environments default="development" > <!-- default引用下面environment标签的id，代表当前所使用的的环境 -->
+  		<!-- 声明可以使用的环境 -->
+  		<environment id="development">
+  			<!-- 使用原生JDBC事务  ，等同于 setAutoCommic(false)， -->
+  			<transactionManager type="JDBC"></transactionManager>
+  			<dataSource type="POOLED"><!-- type里面必须写  -->
+                <!-- 下面四个变量必须严格按照以下名称来写 -->
+  				<property name="driver" value="com.mysql.jdbc.Driver"/><!-- 写jdbc加载的cdriverClass驱动类 -->
+  				<property name="url" value="jdbc:mysql://localhost:3306/bank?useSSL=false"/><!-- 连接数据的url  -->
+  				<property name="username" value="root"/><!-- 连接数据库的用户名 -->
+  				<property name="password" value="lh19990909"/><!-- 连接数据库的密码 -->
+  			</dataSource>
+  		</environment>
+  	</environments>
+  	<mappers>
+  		<mapper resource="cn/web/pack/mapper/bankuserMapper.xml" />
+  		<mapper resource="cn/web/pack/mapper/JournalMapper.xml" />
+  	</mappers>
+  </configuration>
